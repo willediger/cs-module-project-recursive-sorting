@@ -36,7 +36,7 @@ def merge_in_place(arr, start, mid, end):
     # if last element in our "first array" is less than
     # the first element in our "second array", we're done
     if arr[l_end] <= arr[r_start]:
-    return arr
+        return arr
     while l_start <= l_end and r_start <= r_end:
 
         # if first element in our "first array" is less than 
@@ -65,10 +65,17 @@ def merge_in_place(arr, start, mid, end):
 
 
 def merge_sort_in_place(arr, l, r):
-    # Your code here
+    # if we only have 1 element, we're done splitting up the array and just return it
+    # to be merged
+    if r - l < 1:
+        return arr
 
+    mid = (l + r) // 2
 
-    return arr
+    merge_sort_in_place(arr, l, mid)
+    merge_sort_in_place(arr, mid+1, r)
+
+    return merge_in_place(arr, l, mid, r)
 
 
 # STRETCH: implement the Timsort function below
